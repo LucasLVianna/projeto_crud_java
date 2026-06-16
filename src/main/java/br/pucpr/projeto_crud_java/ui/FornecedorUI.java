@@ -54,9 +54,9 @@ public class FornecedorUI extends Stage {
         txtId.setPromptText("ID");
         txtId.setEditable(false);
         txtNome.setPromptText("Nome");
-        txtContato.setPromptText("Contato");
-        txtCEP.setPromptText("CEP");
-        txtPIX.setPromptText("PIX");
+        txtContato.setPromptText("Contato - (XX) XXXXX-XXXX");
+        txtCEP.setPromptText("CEP - XXXXX-XXX");
+        txtPIX.setPromptText("PIX - XXX.XXX.XXX-XX");
 
         btnAtualizar.setDisable(true);
         btnDeletar.setDisable(true);
@@ -70,15 +70,15 @@ public class FornecedorUI extends Stage {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colNome.setPrefWidth(150);
 
-        TableColumn<Fornecedor, String> colContato = new TableColumn<>("Contato - (XX) XXXXX-XXXX");
+        TableColumn<Fornecedor, String> colContato = new TableColumn<>("Contato");
         colContato.setCellValueFactory(new PropertyValueFactory<>("contato"));
         colContato.setPrefWidth(150);
 
-        TableColumn<Fornecedor, String> colCEP = new TableColumn<>("CEP - XXXXX-XXX");
+        TableColumn<Fornecedor, String> colCEP = new TableColumn<>("CEP");
         colCEP.setCellValueFactory(new PropertyValueFactory<>("cep"));
         colCEP.setPrefWidth(100);
 
-        TableColumn<Fornecedor, String> colPIX = new TableColumn<>("PIX - XXX.XXX.XXX-XX");
+        TableColumn<Fornecedor, String> colPIX = new TableColumn<>("PIX");
         colPIX.setCellValueFactory(new PropertyValueFactory<>("pix"));
         colPIX.setPrefWidth(100);
 

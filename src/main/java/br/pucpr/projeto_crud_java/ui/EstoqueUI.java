@@ -39,6 +39,7 @@ public class EstoqueUI extends Stage {
         txtId.setEditable(false);
         txtNome.setPromptText("Nome");
         txtData.setPromptText("Data de criação");
+        txtData.setEditable(false);
         txtStatus.setPromptText("Status");
 
         btnAtualizar.setDisable(true);

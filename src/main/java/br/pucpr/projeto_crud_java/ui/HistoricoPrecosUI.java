@@ -40,6 +40,7 @@ public class HistoricoPrecosUI extends Stage {
         txtIdProduto.setPromptText("ID do Produto");
         txtPreco.setPromptText("Preço");
         txtData.setPromptText("Data");
+        txtData.setEditable(false);
 
         btnAtualizar.setDisable(true);
         btnDeletar.setDisable(true);
