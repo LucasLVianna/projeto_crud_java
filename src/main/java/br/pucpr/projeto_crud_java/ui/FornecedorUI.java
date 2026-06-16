@@ -74,7 +74,7 @@ public class FornecedorUI extends Stage {
         colContato.setCellValueFactory(new PropertyValueFactory<>("contato"));
         colContato.setPrefWidth(150);
 
-        TableColumn<Fornecedor, String> colCEP = new TableColumn<>("CEP - XXXXXX-XXX");
+        TableColumn<Fornecedor, String> colCEP = new TableColumn<>("CEP - XXXXX-XXX");
         colCEP.setCellValueFactory(new PropertyValueFactory<>("cep"));
         colCEP.setPrefWidth(100);
 
@@ -122,8 +122,8 @@ public class FornecedorUI extends Stage {
                 Fornecedor novoFornecedor = new Fornecedor(ArquivoFornecedor.gerarId(), txtNome.getText().trim(), txtContato.getText().trim(), txtCEP.getText().trim(), txtPIX.getText().trim());
                 ArquivoFornecedor.adicionar(novoFornecedor);
                 lblMensagem.setText("Fornecedor adicionado.");
-                carregarTabela();
                 limpar();
+                carregarTabela();
             } catch (Exception ex) {
                 lblMensagem.setText("Erro: " + ex.getMessage());
             }

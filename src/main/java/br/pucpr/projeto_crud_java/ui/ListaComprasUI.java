@@ -103,7 +103,7 @@ public class ListaComprasUI extends Stage {
                 }
                 ListaCompras listaComprasAtualizada = new ListaCompras(Integer.parseInt(txtId.getText()), txtNome.getText().trim(), txtData.getValue(), txtStatus.getText().trim());
                 ArquivoListaCompras.atualizar(listaComprasAtualizada);
-                lblMensagem.setText("Estoque atualizado.");
+                lblMensagem.setText("Lista de Compras atualizada.");
                 limpar();
                 carregarTabela();
             } catch (Exception ex) {

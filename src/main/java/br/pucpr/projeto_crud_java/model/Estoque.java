@@ -1,7 +1,6 @@
 package br.pucpr.projeto_crud_java.model;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Estoque implements Serializable {
     private static final long serialVersionUID = 1L;
