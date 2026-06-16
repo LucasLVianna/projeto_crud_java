@@ -28,6 +28,7 @@ public class ProdutoUI extends Stage {
     private Button btnAtualizar = new Button("Atualizar");
     private Button btnDeletar = new Button("Deletar");
     private Button btnLimpar = new Button("Limpar");
+    private Button btnCancelar = new Button("Cancelar");
 
     private Label lblMensagem = new Label();
 
@@ -42,6 +43,7 @@ public class ProdutoUI extends Stage {
 
         btnAtualizar.setDisable(true);
         btnDeletar.setDisable(true);
+        btnCancelar.setDisable(true);
 
         // Colunas da tabela
         TableColumn<Produto, Integer> colId = new TableColumn<>("ID");
@@ -72,6 +74,7 @@ public class ProdutoUI extends Stage {
                 btnAtualizar.setDisable(false);
                 btnDeletar.setDisable(false);
                 btnAdicionar.setDisable(true);
+                btnCancelar.setDisable(false);
             }
         });
 
@@ -122,9 +125,11 @@ public class ProdutoUI extends Stage {
 
         btnLimpar.setOnAction(e -> limpar());
 
+        btnCancelar.setOnAction(e -> limpar());
+
         // Layout
         HBox campos = new HBox(8, txtId, txtNome, txtCategoria, txtUnidade);
-        HBox botoes = new HBox(8, btnAdicionar, btnAtualizar, btnDeletar, btnLimpar);
+        HBox botoes = new HBox(8, btnAdicionar, btnAtualizar, btnDeletar, btnLimpar, btnCancelar);
         VBox root = new VBox(8, campos, botoes, lblMensagem, tabela);
         root.setStyle("-fx-padding: 12;");
 
@@ -147,5 +152,6 @@ public class ProdutoUI extends Stage {
         btnAdicionar.setDisable(false);
         btnAtualizar.setDisable(true);
         btnDeletar.setDisable(true);
+        btnCancelar.setDisable(true);
     }
 }

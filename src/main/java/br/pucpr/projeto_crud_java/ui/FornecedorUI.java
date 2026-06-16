@@ -44,6 +44,7 @@ public class FornecedorUI extends Stage {
     private Button btnAtualizar = new Button("Atualizar");
     private Button btnDeletar = new Button("Deletar");
     private Button btnLimpar = new Button("Limpar");
+    private Button btnCancelar = new Button("Cancelar");
 
     private Label lblMensagem = new Label();
 
@@ -59,6 +60,7 @@ public class FornecedorUI extends Stage {
 
         btnAtualizar.setDisable(true);
         btnDeletar.setDisable(true);
+        btnCancelar.setDisable(true);
 
         // Colunas da tabela
         TableColumn<Fornecedor, Integer> colId = new TableColumn<>("ID");
@@ -68,15 +70,15 @@ public class FornecedorUI extends Stage {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colNome.setPrefWidth(150);
 
-        TableColumn<Fornecedor, String> colContato = new TableColumn<>("Contato");
+        TableColumn<Fornecedor, String> colContato = new TableColumn<>("Contato - (XX) XXXXX-XXXX");
         colContato.setCellValueFactory(new PropertyValueFactory<>("contato"));
         colContato.setPrefWidth(150);
 
-        TableColumn<Fornecedor, String> colCEP = new TableColumn<>("CEP");
+        TableColumn<Fornecedor, String> colCEP = new TableColumn<>("CEP - XXXXXX-XXX");
         colCEP.setCellValueFactory(new PropertyValueFactory<>("cep"));
         colCEP.setPrefWidth(100);
 
-        TableColumn<Fornecedor, String> colPIX = new TableColumn<>("PIX");
+        TableColumn<Fornecedor, String> colPIX = new TableColumn<>("PIX - XXX.XXX.XXX-XX");
         colPIX.setCellValueFactory(new PropertyValueFactory<>("pix"));
         colPIX.setPrefWidth(100);
 
@@ -94,16 +96,13 @@ public class FornecedorUI extends Stage {
                 btnAtualizar.setDisable(false);
                 btnDeletar.setDisable(false);
                 btnAdicionar.setDisable(true);
+                btnCancelar.setDisable(false);
             }
         });
 
         // Ações
         btnAdicionar.setOnAction(e -> {
             try {
-                if (txtNome.getText().trim().isEmpty() || txtContato.getText().trim().isEmpty() || txtCEP.getText().trim().isEmpty() || txtPIX.getText().trim().isEmpty()) {
-                    lblMensagem.setText("Preencha todos os campos.");
-                    return;
-                }
                 if (txtNome.getText().trim().isEmpty() || txtContato.getText().trim().isEmpty() || txtCEP.getText().trim().isEmpty() || txtPIX.getText().trim().isEmpty()) {
                     lblMensagem.setText("Preencha todos os campos.");
                     return;
@@ -124,6 +123,7 @@ public class FornecedorUI extends Stage {
                 ArquivoFornecedor.adicionar(novoFornecedor);
                 lblMensagem.setText("Fornecedor adicionado.");
                 carregarTabela();
+                limpar();
             } catch (Exception ex) {
                 lblMensagem.setText("Erro: " + ex.getMessage());
             }
@@ -131,10 +131,6 @@ public class FornecedorUI extends Stage {
 
         btnAtualizar.setOnAction(e -> {
             try {
-                if (txtNome.getText().trim().isEmpty() || txtContato.getText().trim().isEmpty() || txtCEP.getText().trim().isEmpty() || txtPIX.getText().trim().isEmpty()) {
-                    lblMensagem.setText("Preencha todos os campos.");
-                    return;
-                }
                 if (txtNome.getText().trim().isEmpty() || txtContato.getText().trim().isEmpty() || txtCEP.getText().trim().isEmpty() || txtPIX.getText().trim().isEmpty()) {
                     lblMensagem.setText("Preencha todos os campos.");
                     return;
@@ -155,6 +151,7 @@ public class FornecedorUI extends Stage {
                 ArquivoFornecedor.atualizar(fornecedorAtualizado);
                 lblMensagem.setText("Fornecedor atualizado.");
                 carregarTabela();
+                limpar();
             } catch (Exception ex) {
                 lblMensagem.setText("Erro: " + ex.getMessage());
             }
@@ -169,13 +166,19 @@ public class FornecedorUI extends Stage {
             ArquivoFornecedor.deletar(selecionado.getId());
             lblMensagem.setText("Fornecedor deletado.");
             carregarTabela();
+            limpar();
         });
 
         btnLimpar.setOnAction(e -> limpar());
 
+        // Cancelar: aborta a edição/seleção atual e volta ao estado neutro.
+        // limpar() já limpa os campos, desfaz a seleção e reabilita Adicionar
+        // desabilitando Atualizar/Deletar/Cancelar.
+        btnCancelar.setOnAction(e -> limpar());
+
         // Layout
         HBox campos = new HBox(8, txtId, txtNome, txtContato, txtCEP, txtPIX);
-        HBox botoes = new HBox(8, btnAdicionar, btnAtualizar, btnDeletar, btnLimpar);
+        HBox botoes = new HBox(8, btnAdicionar, btnAtualizar, btnDeletar, btnLimpar, btnCancelar);
         VBox root = new VBox(8, campos, botoes, lblMensagem, tabela);
         root.setStyle("-fx-padding: 12;");
 
@@ -199,5 +202,6 @@ public class FornecedorUI extends Stage {
         btnAdicionar.setDisable(false);
         btnAtualizar.setDisable(true);
         btnDeletar.setDisable(true);
+        btnCancelar.setDisable(true);
     }
 }
