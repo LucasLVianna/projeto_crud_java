@@ -8,11 +8,21 @@ public class Categoria implements Serializable {
     private int id;
     private String nome;
     private String descricao;
+    private String setor;
 
-    public Categoria(int id, String nome, String descricao) {
+    public Categoria(int id, String nome, String descricao, String setor) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.setor = setor;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
     }
 
     public int getId() {

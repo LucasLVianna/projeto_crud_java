@@ -32,6 +32,8 @@ public class MetaConsumoUI extends Stage {
     private Button btnAtualizar = new Button("Atualizar");
     private Button btnDeletar = new Button("Deletar");
     private Button btnLimpar = new Button("Limpar");
+    private Button btnCancelar = new Button("Cancelar");
+    private Button btnVoltar = new Button("Voltar");
 
     private Label lblMensagem = new Label();
 
@@ -46,6 +48,7 @@ public class MetaConsumoUI extends Stage {
 
         btnAtualizar.setDisable(true);
         btnDeletar.setDisable(true);
+        btnCancelar.setDisable(true);
 
         TableColumn<MetaConsumo, Integer> colId = new TableColumn<>("ID");
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -74,6 +77,7 @@ public class MetaConsumoUI extends Stage {
                 btnAtualizar.setDisable(false);
                 btnDeletar.setDisable(false);
                 btnAdicionar.setDisable(true);
+                btnCancelar.setDisable(false);
             }
         });
 
@@ -137,8 +141,15 @@ public class MetaConsumoUI extends Stage {
 
         btnLimpar.setOnAction(e -> limpar());
 
+        btnCancelar.setOnAction(e -> limpar());
+
+        btnVoltar.setOnAction(e -> {
+            Stage stage = (Stage) btnVoltar.getScene().getWindow();
+            stage.close();
+        });
+
         HBox campos = new HBox(8, txtId, txtCategoria, txtLimiteMensal, txtUnidadeMedida);
-        HBox botoes = new HBox(8, btnAdicionar, btnAtualizar, btnDeletar, btnLimpar);
+        HBox botoes = new HBox(8, btnAdicionar, btnAtualizar, btnDeletar, btnLimpar, btnCancelar, btnVoltar);
         VBox root = new VBox(8, campos, botoes, lblMensagem, tabela);
         root.setStyle("-fx-padding: 12;");
 
@@ -172,5 +183,6 @@ public class MetaConsumoUI extends Stage {
         btnAdicionar.setDisable(false);
         btnAtualizar.setDisable(true);
         btnDeletar.setDisable(true);
+        btnCancelar.setDisable(true);
     }
 }

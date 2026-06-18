@@ -29,6 +29,7 @@ public class HistoricoPrecosUI extends Stage {
     private Button btnDeletar = new Button("Deletar");
     private Button btnLimpar = new Button("Limpar");
     private Button btnCancelar = new Button("Cancelar");
+    private Button btnVoltar = new Button("Voltar");
 
     private Label lblMensagem = new Label();
 
@@ -139,8 +140,13 @@ public class HistoricoPrecosUI extends Stage {
 
         btnCancelar.setOnAction(e -> limpar());
 
+        btnVoltar.setOnAction(e -> {
+            Stage stage = (Stage) btnVoltar.getScene().getWindow();
+            stage.close();
+        });
+
         HBox campos = new HBox(8, txtId, txtIdProduto, txtPreco, txtData);
-        HBox botoes = new HBox(8, btnAdicionar, btnAtualizar, btnDeletar, btnLimpar, btnCancelar);
+        HBox botoes = new HBox(8, btnAdicionar, btnAtualizar, btnDeletar, btnLimpar, btnCancelar, btnVoltar);
         VBox root = new VBox(8, campos, botoes, lblMensagem, tabela);
         root.setStyle("-fx-padding: 12;");
 
