@@ -14,6 +14,13 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/**
+ * Janela de interface gráfica para gerenciar histórico de preços de produtos.
+ * Permite adicionar, atualizar, deletar e visualizar registros de histórico de preços
+ * através de uma tabela interativa com campos de entrada de dados.
+ *
+ * @author Lucas Vianna
+ */
 public class HistoricoPrecosUI extends Stage {
 
     private TextField txtId = new TextField();
@@ -32,6 +39,11 @@ public class HistoricoPrecosUI extends Stage {
 
     private Label lblMensagem = new Label();
 
+    /**
+     * Construtor que inicializa a interface gráfica do histórico de preços.
+     * Configura os campos de entrada, tabela, botões e seus respectivos listeners.
+     * Também carrega os dados existentes ao abrir a janela.
+     */
     public HistoricoPrecosUI() {
         setTitle("Histórico de Preços");
 
@@ -64,6 +76,7 @@ public class HistoricoPrecosUI extends Stage {
         tabela.getColumns().addAll(colId, colIdProduto, colPreco, colData);
         tabela.setItems(dados);
 
+        // Listener que atualiza os campos de entrada quando um registro é selecionado na tabela
         tabela.getSelectionModel().selectedItemProperty().addListener((obs, ant, selecionado) -> {
             if (selecionado != null) {
                 txtId.setText(String.valueOf(selecionado.getId()));
@@ -77,6 +90,7 @@ public class HistoricoPrecosUI extends Stage {
             }
         });
 
+        // Ação para adicionar novo registro
         btnAdicionar.setOnAction(e -> {
             try {
                 if (txtIdProduto.getText().trim().isEmpty() || txtPreco.getText().trim().isEmpty() || txtData.getValue() == null) {
@@ -100,6 +114,7 @@ public class HistoricoPrecosUI extends Stage {
             }
         });
 
+        // Ação para atualizar registro selecionado
         btnAtualizar.setOnAction(e -> {
             try {
                 if (txtIdProduto.getText().trim().isEmpty() || txtPreco.getText().trim().isEmpty() || txtData.getValue() == null) {
@@ -123,6 +138,7 @@ public class HistoricoPrecosUI extends Stage {
             }
         });
 
+        // Ação para deletar registro selecionado
         btnDeletar.setOnAction(e -> {
             HistoricoPreco selecionado = tabela.getSelectionModel().getSelectedItem();
             if (selecionado == null) {
@@ -148,11 +164,19 @@ public class HistoricoPrecosUI extends Stage {
         carregarTabela();
     }
 
+    /**
+     * Carrega os dados do arquivo de histórico de preços e atualiza a tabela.
+     * Obtém a lista completa de registros e exibe na interface.
+     */
     private void carregarTabela() {
         ArrayList<HistoricoPreco> lista = ArquivoHistoricoPreco.lerLista();
         dados.setAll(lista);
     }
 
+    /**
+     * Limpa todos os campos de entrada e redefine o estado dos botões.
+     * Remove a seleção da tabela e exibe mensagens vazias.
+     */
     private void limpar() {
         txtId.clear();
         txtIdProduto.clear();
