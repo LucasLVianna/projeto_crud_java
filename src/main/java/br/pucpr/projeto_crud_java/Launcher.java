@@ -1,9 +1,10 @@
 package br.pucpr.projeto_crud_java;
 
-import javafx.application.Application;
+public final class Launcher {
+    private Launcher() {
+    }
 
-public class Launcher {
     public static void main(String[] args) {
-        Application.launch(Main.class, args);
+        Main.main(args);
     }
 }
