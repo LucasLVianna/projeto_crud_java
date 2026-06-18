@@ -63,7 +63,7 @@ public class CategoriaUI extends Stage {
         colSetor.setCellValueFactory(new PropertyValueFactory<>("setor"));
         colSetor.setPrefWidth(150);
 
-        tabela.getColumns().addAll(colId, colNome, colDescricao);
+        tabela.getColumns().addAll(colId, colNome, colDescricao, colSetor);
         tabela.setItems(dados);
 
         // Clique na tabela preenche o formulário
@@ -72,6 +72,7 @@ public class CategoriaUI extends Stage {
                 txtId.setText(String.valueOf(selecionado.getId()));
                 txtNome.setText(selecionado.getNome());
                 txtDescricao.setText(selecionado.getDescricao());
+                txtSetor.setText(selecionado.getSetor());
                 btnAtualizar.setDisable(false);
                 btnDeletar.setDisable(false);
                 btnAdicionar.setDisable(true);
