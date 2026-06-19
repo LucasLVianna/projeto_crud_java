@@ -35,17 +35,14 @@ public class ContaSuporteUI extends Stage {
 
     private Label lblMensagem = new Label();
 
-    // CEP: exatamente 8 digitos
     private boolean validarCep(String cep) {
         return cep.matches("\\d{8}");
     }
 
-    // Email: precisa ter @ e ponto
     private boolean validarEmail(String email) {
         return email.contains("@") && email.contains(".");
     }
 
-    // CPF: exatamente 11 digitos
     private boolean validarCpf(String cpf) {
         return cpf.matches("\\d{11}");
     }
@@ -80,11 +77,16 @@ public class ContaSuporteUI extends Stage {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colEmail.setPrefWidth(180);
 
+
+        TableColumn<ContaSuporte, String> colSenha = new TableColumn<>("Senha");
+        colSenha.setCellValueFactory(new PropertyValueFactory<>("senha"));
+        colSenha.setPrefWidth(180);
+
         TableColumn<ContaSuporte, String> colCpf = new TableColumn<>("CPF");
         colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         colCpf.setPrefWidth(120);
 
-        tabela.getColumns().addAll(colId, colNome, colCep, colEmail, colCpf);
+        tabela.getColumns().addAll(colId, colNome, colCep, colEmail, colSenha, colCpf);
         tabela.setItems(dados);
 
         tabela.getSelectionModel().selectedItemProperty().addListener((obs, ant, selecionado) -> {
